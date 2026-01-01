@@ -34,17 +34,17 @@ app.use("/api/messages", messageRoutes);
 
 // ---------------- FRONTEND (PRODUCTION) ----------------
 if (process.env.NODE_ENV === "production") {
-  // Resolve the correct path to frontend/dist
-  const frontendPath = path.resolve(__dirname, "../../frontend/dist");
+  const frontendPath = path.resolve(__dirname, "frontend/dist");
 
-  // Serve static files from frontend/dist
+  // Serve static files
   app.use(express.static(frontendPath));
 
-  // SPA catch-all route (MUST be last)
+  // SPA catch-all
   app.use((req, res) => {
     res.sendFile(path.join(frontendPath, "index.html"));
   });
 }
+
 
 // ---------------- START SERVER ----------------
 connectDB().then(() => {
